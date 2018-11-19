@@ -149,11 +149,13 @@ file(
 ####################################################################
 IF(MAKE_BYTERACERS)
 	add_executable(ByteRacers
-		start/main.cpp
-		start/myentity.cpp
-		start/myentity.h
-		start/myscene.cpp
-		start/myscene.h
+		ByteRacers/main.cpp
+		ByteRacers/myentity.cpp
+		ByteRacers/myentity.h
+		ByteRacers/myscene.cpp
+		ByteRacers/myscene.h
+		ByteRacers/scenemanager.h
+		ByteRacers/scenemanager.cpp
 	)
 	target_link_libraries(ByteRacers
 		${ALL_GRAPHICS_LIBS}

@@ -9,7 +9,7 @@
 
 #include "myscene.h"
 
-MyScene::MyScene() : Scene()
+MyScene::MyScene() : BRScene()
 {
 	// start the timer.
 	t.start();

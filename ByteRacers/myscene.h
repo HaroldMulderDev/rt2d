@@ -9,12 +9,12 @@
 #ifndef MYSCENE_H
 #define MYSCENE_H
 
-#include <rt2d/scene.h>
+#include "BRScene.h"
 
 #include "myentity.h"
 
 /// @brief The MyScene class is the Scene implementation.
-class MyScene : public Scene
+class MyScene : public BRScene
 {
 public:
 	/// @brief Constructor
