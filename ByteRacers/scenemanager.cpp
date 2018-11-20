@@ -28,7 +28,6 @@ int SceneManager::loop() {
 	if (IsRunning()) { // check status of Scene every frame
 		core.run(activeScene); // update and render the current scene
 		core.showFrameRate(5); // show framerate in output every n seconds
-		return 1;
 	}
 	//core.cleanup(); // cleanup ResourceManager (Textures + Meshes, but not Shaders)
 	
