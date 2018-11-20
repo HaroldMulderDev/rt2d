@@ -22,7 +22,7 @@ public:
 	void setScene(int Scene);
 
 	// Used to check isRunning to see if the game should be quit.
-	bool IsRunning() {return isRunning; }
+	bool IsRunning() {return activeScene->isRunning(); }
 
 private:
 	// The current scene that is being run.
@@ -30,9 +30,6 @@ private:
 
 	// Core instance
 	Core core;
-
-	// Used to check wether or not to continue our gameloop
-	bool isRunning;
 
 	// The list of all the scenes which are currently loaded and ready to be used. Only oe scene should be set as the current active scene
 	std::vector<BRScene*> loadedScenes;

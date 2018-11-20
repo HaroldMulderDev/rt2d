@@ -156,6 +156,8 @@ IF(MAKE_BYTERACERS)
 		ByteRacers/myscene.h
 		ByteRacers/scenemanager.h
 		ByteRacers/scenemanager.cpp
+		ByteRacers/BRscene.h
+		ByteRacers/BRscene.cpp
 	)
 	target_link_libraries(ByteRacers
 		${ALL_GRAPHICS_LIBS}

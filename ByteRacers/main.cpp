@@ -24,8 +24,12 @@ int main( void )
 	SceneManager sceneManager;
 
 	while (sceneManager.IsRunning()) {
-		sceneManager.loop();
+		if (sceneManager.loop()) {
+
+		}
 	}
+
+
 
 	return 0;
 }
