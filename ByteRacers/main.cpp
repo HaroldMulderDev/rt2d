@@ -23,13 +23,9 @@ int main( void )
 	// SceneManager instance
 	SceneManager sceneManager;
 
-	while (sceneManager.IsRunning()) {
-		if (sceneManager.loop()) {
-
-		}
+	while (sceneManager.loop()) 
+	{
 	}
-
-
 
 	return 0;
 }

@@ -16,7 +16,7 @@ public:
 	~SceneManager();
 	
 	// Runs a scene and keeps running it until the scene is ready to stop. Returns if the game should stop.
-	int loop();
+	bool loop();
 
 	// Used to set the current active scene. The active scene gets updated by the scenemanager.
 	void setScene(int Scene);

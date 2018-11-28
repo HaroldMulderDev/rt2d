@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "myscene.h"
+#include "myEntity.h"
 
 MyScene::MyScene() : BRScene()
 {
@@ -16,22 +17,24 @@ MyScene::MyScene() : BRScene()
 
 	// create a single instance of MyEntity in the middle of the screen.
 	// the Sprite is added in Constructor of MyEntity.
-	myentity = new MyEntity();
-	myentity->position = Point2(SWIDTH/2, SHEIGHT/2);
+	entity = new MyEntity();
+	entity->position = Point2(SWIDTH/2, SHEIGHT/2);
+
+	void(*buttonFunctionality)() = &callThisScene;
+	button = new Button(buttonFunctionality);
 
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
-	this->addChild(myentity);
+	this->addChild(entity);
 }
-
 
 MyScene::~MyScene()
 {
 	// deconstruct and delete the Tree
-	this->removeChild(myentity);
+	this->removeChild(entity);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
-	delete myentity;
+	delete entity;
 }
 
 void MyScene::update(float deltaTime)
@@ -40,25 +43,29 @@ void MyScene::update(float deltaTime)
 	// Escape key stops the Scene
 	// ###############################################################
 	if (input()->getKeyUp(KeyCode::Escape)) {
-		this->stop();
+		callScene(0);
 	}
 
 	// ###############################################################
 	// Spacebar scales myentity
 	// ###############################################################
 	if (input()->getKeyDown(KeyCode::Space)) {
-		myentity->scale = Point(0.5f, 0.5f);
+		entity->scale = Point(0.5f, 0.5f);
 	}
 	if (input()->getKeyUp(KeyCode::Space)) {
-		myentity->scale = Point(1.0f, 1.0f);
+		entity->scale = Point(1.0f, 1.0f);
 	}
 
 	// ###############################################################
 	// Rotate color
 	// ###############################################################
 	if (t.seconds() > 0.0333f) {
-		RGBAColor color = myentity->sprite()->color;
-		myentity->sprite()->color = Color::rotate(color, 0.01f);
+		RGBAColor color = entity->sprite()->color;
+		entity->sprite()->color = Color::rotate(color, 0.01f);
 		t.start();
 	}
+}
+
+void MyScene::callThisScene() {
+	callScene(0);
 }
