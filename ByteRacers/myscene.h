@@ -12,6 +12,7 @@
 #include "BRScene.h"
 
 #include "myentity.h"
+#include "button.h"
 
 /// @brief The MyScene class is the Scene implementation.
 class MyScene : public BRScene
@@ -29,6 +30,8 @@ public:
 
 	void callThisScene();
 
+	void stopEntityColors();
+
 private:
 	/// @brief the rotating square in the middle of the screen
 	MyEntity* entity;
@@ -36,6 +39,8 @@ private:
 	Button* button;
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
+
+	bool entityColors;
 };
 
 #endif /* SCENE00_H */

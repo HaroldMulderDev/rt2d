@@ -1,8 +1,10 @@
+#pragma once
+
 #ifndef BRSENE_H
 #define BRSCENE_H
 
 #include <rt2d/scene.h>
-# include "button.h"
+#include "button.h"
 
 class BRScene : public Scene
 {
@@ -27,6 +29,8 @@ public:
 	void callScene(int scene);
 
 private:
+
+	bool removeChildren;
 
 	/// @brief Used by scenemanager to play the next scene if its -1 when the scene is no longer running the game should end
 	int sceneToPlay;

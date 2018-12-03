@@ -1,8 +1,9 @@
 #include "Button.h"
+#include <iostream>
 
-Button::Button(void (*functionToCall)())
+Button::Button()
 {
-	buttonRun = functionToCall;
+	this->addSprite("assets/button.tga");
 }
 
 Button::~Button()
@@ -11,11 +12,18 @@ Button::~Button()
 }
 
 void Button::update(float deltaTime) {
-
+	this->sprite()->color = WHITE;
+	if (input()->getMouseDown(0)) {
+		checkClick(input()->getMouseX(), input()->getMouseY());
+	}
 }
 
 void Button::checkClick(double mouseX, double mouseY) {
-	if (mouseX > position.x && mouseX < position.x + scale.x && mouseY > position.y && mouseY < position.y + scale.y) {
-		*buttonRun;
+	float posX = position.x - ((this->sprite()->width() * scale.x) / 2);
+	float posY = position.y - ((this->sprite()->height() * scale.y) / 2);
+	//std::cout << "mouse: " << mouseX << " - " << mouseY << "\n" << "Position: " << posX << " - " << posY << "\n" << "Edges: " << posX + (this->sprite()->width() * scale.x) << " - " << posY + (this->sprite()->width() * scale.y) << "\n";
+	if (mouseX > posX && mouseX < posX + (this->sprite()->width() * scale.x) && mouseY > posY && mouseY < posY + (this->sprite()->height() * scale.y)) {
+		this->sprite()->color = BLUE;
+		buttonRun();
 	}
 }

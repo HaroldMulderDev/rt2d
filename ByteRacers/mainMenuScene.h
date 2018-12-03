@@ -1,0 +1,31 @@
+#ifndef MAINMENUSCENE_H
+#define MAINMENUSCENE_H
+
+#include "BRScene.h"
+
+class MainMenuScene : public BRScene
+{
+public:
+
+   // MainMenuScene constructor
+   MainMenuScene();
+
+   // MainMenuScene destructor
+   ~MainMenuScene();
+
+   void callCreditScene();
+
+   void callGameQuit();
+
+   void callGameScene();
+
+private:
+
+	Button* button;
+
+	Button* button2;
+
+	Button* button3;
+};
+
+#endif // !MAINMENUSCENE_H

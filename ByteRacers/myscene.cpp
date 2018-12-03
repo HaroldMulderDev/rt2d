@@ -8,10 +8,11 @@
 #include <sstream>
 
 #include "myscene.h"
-#include "myEntity.h"
 
 MyScene::MyScene() : BRScene()
 {
+	entityColors = true;
+
 	// start the timer.
 	t.start();
 
@@ -20,12 +21,14 @@ MyScene::MyScene() : BRScene()
 	entity = new MyEntity();
 	entity->position = Point2(SWIDTH/2, SHEIGHT/2);
 
-	void(*buttonFunctionality)() = &callThisScene;
-	button = new Button(buttonFunctionality);
-
+	button = new Button();
+	button->setButtonRun(std::bind(&MyScene::stopEntityColors, this));
+	button->position = Point2(SWIDTH/3,SHEIGHT/3);
+	
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
 	this->addChild(entity);
+	this->addChild(button);
 }
 
 MyScene::~MyScene()
@@ -60,12 +63,18 @@ void MyScene::update(float deltaTime)
 	// Rotate color
 	// ###############################################################
 	if (t.seconds() > 0.0333f) {
-		RGBAColor color = entity->sprite()->color;
-		entity->sprite()->color = Color::rotate(color, 0.01f);
-		t.start();
+		if (entityColors) {
+			RGBAColor color = entity->sprite()->color;
+			entity->sprite()->color = Color::rotate(color, 0.01f);
+			t.start();
+		}
 	}
 }
 
 void MyScene::callThisScene() {
 	callScene(0);
+}
+
+void MyScene::stopEntityColors() {
+	entityColors = false;
 }

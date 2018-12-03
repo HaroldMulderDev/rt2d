@@ -6,12 +6,16 @@
 
 #include "scenemanager.h"
 
-#include "myscene.h"
+#include "mainMenuScene.h"
+#include "gameScene.h"
+#include "creditScene.h"
 
 SceneManager::SceneManager()
 {
 	// Push all the scenes to 'scenes'
-	loadedScenes.push_back(new MyScene());
+	loadedScenes.push_back(new MainMenuScene());
+	loadedScenes.push_back(new GameScene());
+	loadedScenes.push_back(new CreditScene());
 
 	activeScene = loadedScenes[0];
 	// No need to explicitly clean up the core.
@@ -44,7 +48,7 @@ bool SceneManager::loop() {
 }
 
 void SceneManager::setScene(int scene) {
-	if (scene > loadedScenes.size - 1) {
+	if (scene > loadedScenes.size() - 1) {
 		activeScene->ResetSceneToPlay();
 		activeScene = loadedScenes[scene];
 		activeScene->start();

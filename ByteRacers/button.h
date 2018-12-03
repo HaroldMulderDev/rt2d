@@ -2,13 +2,14 @@
 #define BUTTON_H
 
 #include <rt2d/entity.h>
+#include <functional>
 
-class Button : Entity
+class Button : public Entity
 {
 public:
 
    // Button constructor
-   Button(void (*functionToCall)());
+   Button();
 
    // Button destructor
    ~Button();
@@ -17,9 +18,10 @@ public:
 	
    void checkClick(double mouseX, double mouseY);
 
-   void (*buttonRun)();
+   void setButtonRun(std::function<void()> value) { buttonRun = value; }
    
 private:
+	std::function<void()> buttonRun = nullptr;
 };
 
 #endif // !BUTTON_H

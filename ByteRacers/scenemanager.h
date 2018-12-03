@@ -26,7 +26,7 @@ public:
 
 private:
 	// The current scene that is being run.
-	BRScene* activeScene;
+	BRScene* activeScene = nullptr;
 
 	// Core instance
 	Core core;
