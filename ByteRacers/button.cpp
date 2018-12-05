@@ -1,9 +1,14 @@
 #include "Button.h"
 #include <iostream>
 
-Button::Button()
+Button::Button(std::string name, RGBAColor c)
 {
 	this->addSprite("assets/button.tga");
+	display = new Text();
+	display->message(name, c);
+	setTextScale(0.5);
+	setTextOffset(-24);
+	this->addChild(display);
 }
 
 Button::~Button()

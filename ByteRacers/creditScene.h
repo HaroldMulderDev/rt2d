@@ -13,6 +13,7 @@ public:
    // CreditScene destructor
    ~CreditScene();
 private:
+	Button* button;
 };
 
 #endif // !CREDITSCENE_H

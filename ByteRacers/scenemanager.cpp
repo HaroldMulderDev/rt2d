@@ -36,6 +36,11 @@ bool SceneManager::loop() {
 	}
 
 	if (activeScene->SceneToPlay() != -1) {
+		/*for (int i = activeScene->children().size()-1; i >= 0; i--)
+		{
+			Entity* child = activeScene->children()[i];
+			child->parent()->removeChild(child);
+		}*/
 		setScene(activeScene->SceneToPlay());
 	}
 	else 
@@ -48,9 +53,10 @@ bool SceneManager::loop() {
 }
 
 void SceneManager::setScene(int scene) {
-	if (scene > loadedScenes.size() - 1) {
+	if (scene <= loadedScenes.size() - 1) {
 		activeScene->ResetSceneToPlay();
 		activeScene = loadedScenes[scene];
 		activeScene->start();
+		activeScene->onRun();
 	}
 }

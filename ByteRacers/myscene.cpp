@@ -20,15 +20,10 @@ MyScene::MyScene() : BRScene()
 	// the Sprite is added in Constructor of MyEntity.
 	entity = new MyEntity();
 	entity->position = Point2(SWIDTH/2, SHEIGHT/2);
-
-	button = new Button();
-	button->setButtonRun(std::bind(&MyScene::stopEntityColors, this));
-	button->position = Point2(SWIDTH/3,SHEIGHT/3);
 	
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
 	this->addChild(entity);
-	this->addChild(button);
 }
 
 MyScene::~MyScene()
