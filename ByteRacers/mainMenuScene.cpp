@@ -4,18 +4,18 @@ MainMenuScene::MainMenuScene()
 {
 	setName("MainMenu");
 
-	button = new Button("Credits", GRAY);
-	button->setButtonRun(std::bind(&MainMenuScene::callCreditScene, this));
+	button = new Button("Play", GRAY);
+	button->setButtonRun(std::bind(&MainMenuScene::callGameScene, this));
 	button->position = Point2(SWIDTH / 3, SHEIGHT / 3);
-	button->setTextOffset(-47);
 
-	button2 = new Button("Quit", GRAY);
-	button2->setButtonRun(std::bind(&MainMenuScene::callGameQuit, this));
+	button2 = new Button("Credits", GRAY);
+	button2->setButtonRun(std::bind(&MainMenuScene::callCreditScene, this));
 	button2->position = Point2(SWIDTH / 3, SHEIGHT / 2);
+	button2->setTextOffset(-47);
 
-	button3 = new Button("Play", GRAY);
-	button3->setButtonRun(std::bind(&MainMenuScene::callGameScene, this));
-	button3->position = Point2(SWIDTH / 3, SHEIGHT / 1.4);
+	button3 = new Button("Quit", GRAY);
+	button3->setButtonRun(std::bind(&MainMenuScene::callGameQuit, this));
+	button3->position = Point2(SWIDTH / 3, SHEIGHT / 1.5);
 
 	this->addChild(button);
 	this->addChild(button2);

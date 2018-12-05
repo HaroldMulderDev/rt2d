@@ -4,6 +4,8 @@
 Button::Button(std::string name, RGBAColor c)
 {
 	this->addSprite("assets/button.tga");
+	this->sprite()->color = c;
+
 	display = new Text();
 	display->message(name, c);
 	setTextScale(0.5);

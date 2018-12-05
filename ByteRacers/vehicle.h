@@ -7,7 +7,6 @@
 class Vehicle : Entity
 {
 public:
-
    // Vehicle constructor
    Vehicle();
 
