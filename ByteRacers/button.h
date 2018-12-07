@@ -20,7 +20,7 @@ public:
 	
 
    // Checks if the button is being clicked and runs the function pointed to by buttonRun
-   void checkClick(double mouseX, double mouseY);
+   void checkClick();
 
    // A setter for buttonRun
    void setButtonRun(std::function<void()> value) { buttonRun = value; }

@@ -1,38 +1,36 @@
-#include "Button.h"
-#include <iostream>
+#include "drawCell.h"
 
-Button::Button(std::string name, RGBAColor c)
+DrawCell::DrawCell()
 {
-	this->addSprite("assets/button.tga");
-	this->sprite()->color = c;
-
-	display = new Text();
-	display->message(name, c);
-	setTextScale(0.5);
-	setTextOffset(-24);
-	this->addChild(display);
+	this->addSprite("assets/drawCell.tga");
+	this->sprite()->setupSpriteTGAPixelBuffer("assets/drawCell.tga",0,0);
 }
 
-Button::~Button()
+DrawCell::~DrawCell()
 {
    
 }
 
-void Button::update(float deltaTime) {
-	this->sprite()->color = WHITE;
+void DrawCell::update(float deltaTime) {
 	if (input()->getMouseDown(0)) {
-		checkClick();
+		if (checkClick()) {
+			updateSprite();
+		}
 	}
 }
 
-void Button::checkClick() {
+bool DrawCell::checkClick() {
 	double mouseX = input()->getMouseX();
 	double mouseY = input()->getMouseY();
 	float posX = position.x - ((this->sprite()->width() * scale.x) / 2);
 	float posY = position.y - ((this->sprite()->height() * scale.y) / 2);
 	//std::cout << "mouse: " << mouseX << " - " << mouseY << "\n" << "Position: " << posX << " - " << posY << "\n" << "Edges: " << posX + (this->sprite()->width() * scale.x) << " - " << posY + (this->sprite()->width() * scale.y) << "\n";
 	if (mouseX > posX && mouseX < posX + (this->sprite()->width() * scale.x) && mouseY > posY && mouseY < posY + (this->sprite()->height() * scale.y)) {
-		this->sprite()->color = BLUE;
-		buttonRun();
+		return true;
 	}
+	return false;
+}
+
+void DrawCell::updateSprite() {
+	this->sprite()->texture()->pixels()->setPixel(0,0,RED);
 }

@@ -2,6 +2,7 @@
 #define DRAWSCENE_H
 
 #include "BRScene.h"
+#include "drawCell.h"
 
 class DrawScene : public BRScene
 {
@@ -16,6 +17,8 @@ public:
    virtual void update(float deltaTime);
 private:
 	Button* button;
+
+	DrawCell* cell;
 };
 
 #endif // !DRAWSCENE_H
