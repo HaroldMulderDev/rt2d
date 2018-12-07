@@ -9,6 +9,7 @@
 #include "mainMenuScene.h"
 #include "gameScene.h"
 #include "creditScene.h"
+#include "drawScene.h"
 
 SceneManager::SceneManager()
 {
@@ -16,6 +17,7 @@ SceneManager::SceneManager()
 	loadedScenes.push_back(new MainMenuScene());
 	loadedScenes.push_back(new GameScene());
 	loadedScenes.push_back(new CreditScene());
+	loadedScenes.push_back(new DrawScene());
 
 	activeScene = loadedScenes[0];
 	// No need to explicitly clean up the core.

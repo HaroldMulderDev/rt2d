@@ -13,13 +13,19 @@ MainMenuScene::MainMenuScene()
 	button2->position = Point2(SWIDTH / 3, SHEIGHT / 2);
 	button2->setTextOffset(-47);
 
-	button3 = new Button("Quit", GRAY);
-	button3->setButtonRun(std::bind(&MainMenuScene::callGameQuit, this));
+	button3 = new Button("Garage", GRAY);
+	button3->setButtonRun(std::bind(&MainMenuScene::callDrawScene, this));
 	button3->position = Point2(SWIDTH / 3, SHEIGHT / 1.5);
+	button3->setTextOffset(-47);
+
+	button4 = new Button("Quit", GRAY);
+	button4->setButtonRun(std::bind(&MainMenuScene::callGameQuit, this));
+	button4->position = Point2(SWIDTH / 3, SHEIGHT / 1.20);
 
 	this->addChild(button);
 	this->addChild(button2);
 	this->addChild(button3);
+	this->addChild(button4);
 }
 
 MainMenuScene::~MainMenuScene()
@@ -39,4 +45,8 @@ void MainMenuScene::callGameQuit() {
 
 void MainMenuScene::callGameScene() {
 	callScene(1);
+}
+
+void MainMenuScene::callDrawScene(){
+	callScene(3);
 }

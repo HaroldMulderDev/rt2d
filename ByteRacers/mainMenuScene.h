@@ -19,6 +19,8 @@ public:
 
    void callGameScene();
 
+   void callDrawScene();
+
 private:
 
 	Button* button;
@@ -26,6 +28,8 @@ private:
 	Button* button2;
 
 	Button* button3;
+
+	Button* button4;
 };
 
 #endif // !MAINMENUSCENE_H

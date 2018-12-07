@@ -2,6 +2,7 @@
 #define GAMESCENE_H
 
 #include "BRScene.h"
+#include "massBody.h"
 
 class GameScene : public BRScene
 {
@@ -19,6 +20,8 @@ public:
    virtual void update(float deltaTime);
 private:
 	Button* button;
+
+	MassBody* car;
 };
 
 #endif // !GAMESCENE_H
