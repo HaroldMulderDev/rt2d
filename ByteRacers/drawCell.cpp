@@ -12,7 +12,7 @@ DrawCell::~DrawCell()
 }
 
 void DrawCell::update(float deltaTime) {
-	if (input()->getMouseDown(0)) {
+	if (input()->getMouse(0)) {
 		if (checkClick()) {
 			updateSprite();
 		}

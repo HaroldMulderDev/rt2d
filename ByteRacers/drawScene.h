@@ -18,7 +18,10 @@ public:
 private:
 	Button* button;
 
-	DrawCell* cell;
+	std::vector<DrawCell*> drawGrid;
+	int cellSize; // The width or height in pixels each cell will take up
+	int gridSize; // The width or height in cells the grid will be
+	
 };
 
 #endif // !DRAWSCENE_H
