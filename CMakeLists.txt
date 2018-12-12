@@ -22,8 +22,8 @@ OPTION(USE_OPENAL "Use OpenAL library" OFF)
 OPTION(MAKE_AUDIOSTART "Make OpenAL/RT2D audiostart" OFF)
 OPTION(MAKE_OPENAL_TONEGEN "Make OpenAL Tone Generator" OFF)
 
-OPTION(USE_BOX2D "Use Box2D" OFF)
-OPTION(MAKE_BOX2DSTART "Make Box2D/RT2D box2dstart" OFF)
+OPTION(USE_BOX2D "Use Box2D" ON)
+OPTION(MAKE_BOX2DSTART "Make Box2D/RT2D box2dstart" ON)
 ####################################################################
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -93,6 +93,36 @@ add_definitions(
 )
 
 ####################################################################
+# box2d.a                                                          #
+####################################################################
+IF(USE_BOX2D)
+	option(BOX2D_INSTALL "Install Box2D libs, includes, and CMake scripts" OFF)
+	option(BOX2D_INSTALL_DOC "Install Box2D documentation" OFF)
+	option(BOX2D_BUILD_SHARED "Build Box2D shared libraries" OFF)
+	option(BOX2D_BUILD_STATIC "Build Box2D static libraries" ON)
+	option(BOX2D_BUILD_EXAMPLES "Build Box2D examples" OFF)
+
+	set(BOX2D_VERSION 2.3.2)
+	set(LIB_INSTALL_DIR lib${LIB_SUFFIX})
+
+	# The Box2D library.
+	add_subdirectory(external/Box2D)
+
+	include_directories(
+		${CMAKE_SOURCE_DIR}/external/Box2D
+	)
+	link_directories(
+		${CMAKE_SOURCE_DIR}/external/Box2D
+	)
+	add_definitions(
+	    -DBOX2D_BUILD_STATIC
+	)
+	set(BOX2D_LIB
+	    Box2D
+	)
+ENDIF()
+
+####################################################################
 # librt2d.a                                                        #
 ####################################################################
 add_library(rt2d
@@ -150,16 +180,29 @@ file(
 IF(MAKE_BYTERACERS)
 	add_executable(ByteRacers
 		ByteRacers/main.cpp
-		ByteRacers/myentity.cpp
-		ByteRacers/myentity.h
-		ByteRacers/myscene.cpp
-		ByteRacers/myscene.h
 		ByteRacers/scenemanager.h
 		ByteRacers/scenemanager.cpp
 		ByteRacers/BRscene.h
 		ByteRacers/BRscene.cpp
+		ByteRacers/button.h
+		ByteRacers/button.cpp
+		ByteRacers/creditScene.h
+		ByteRacers/creditScene.cpp
+		ByteRacers/drawCell.h
+		ByteRacers/drawCell.cpp
+		ByteRacers/drawScene.h
+		ByteRacers/drawScene.cpp
+		ByteRacers/gameScene.h
+		ByteRacers/gameScene.cpp
+		ByteRacers/mainMenuScene.h
+		ByteRacers/mainMenuScene.cpp
+		ByteRacers/massBody.h
+		ByteRacers/massBody.cpp
+		ByteRacers/vehicle.h
+		ByteRacers/vehicle.cpp
 	)
 	target_link_libraries(ByteRacers
+		${BOX2D_LIB}		
 		${ALL_GRAPHICS_LIBS}
 	)
 	# Copy assets to the build directory
@@ -464,36 +507,6 @@ IF(MAKE_OPENAL_TONEGEN AND USE_OPENAL)
 	)
 	target_link_libraries(altonegenrt
 		${OPENAL}
-	)
-ENDIF()
-
-####################################################################
-# box2d.a                                                          #
-####################################################################
-IF(USE_BOX2D)
-	option(BOX2D_INSTALL "Install Box2D libs, includes, and CMake scripts" OFF)
-	option(BOX2D_INSTALL_DOC "Install Box2D documentation" OFF)
-	option(BOX2D_BUILD_SHARED "Build Box2D shared libraries" OFF)
-	option(BOX2D_BUILD_STATIC "Build Box2D static libraries" ON)
-	option(BOX2D_BUILD_EXAMPLES "Build Box2D examples" OFF)
-
-	set(BOX2D_VERSION 2.3.2)
-	set(LIB_INSTALL_DIR lib${LIB_SUFFIX})
-
-	# The Box2D library.
-	add_subdirectory(external/Box2D)
-
-	include_directories(
-		${CMAKE_SOURCE_DIR}/external/Box2D
-	)
-	link_directories(
-		${CMAKE_SOURCE_DIR}/external/Box2D
-	)
-	add_definitions(
-	    -DBOX2D_BUILD_STATIC
-	)
-	set(BOX2D_LIB
-	    Box2D
 	)
 ENDIF()
 

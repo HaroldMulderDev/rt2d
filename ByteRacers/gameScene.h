@@ -3,11 +3,11 @@
 
 #include "BRScene.h"
 #include "massBody.h"
+#include "Box2D/Box2D.h"
 
 class GameScene : public BRScene
 {
 public:
-
    // GameScene constructor
    GameScene();
 
@@ -19,6 +19,14 @@ public:
 	/// @return void
    virtual void update(float deltaTime);
 private:
+	b2World* world;
+
+	Timer t;
+	Timer st;
+
+	std::vector<b2Body*> bodies;
+	std::vector<MassBody*> entities;
+
 	Button* button;
 
 	MassBody* car;

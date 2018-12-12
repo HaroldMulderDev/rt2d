@@ -3,7 +3,7 @@
 
 // Include standard headers
 #include <rt2d/core.h>
-#include "myscene.h"
+#include "BRscene.h"
 
 class SceneManager
 {
