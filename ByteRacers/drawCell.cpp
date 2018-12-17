@@ -2,8 +2,9 @@
 
 DrawCell::DrawCell()
 {
-	this->addSprite("assets/drawCell.tga");
-	this->sprite()->setupSpriteTGAPixelBuffer("assets/drawCell.tga",0,0);
+	this->addSprite("assets/vehicle.tga");
+	this->sprite()->setupSpriteTGAPixelBuffer("assets/vehicle.tga",0,0);
+	currentColor = RED;
 }
 
 DrawCell::~DrawCell()
@@ -14,7 +15,8 @@ DrawCell::~DrawCell()
 void DrawCell::update(float deltaTime) {
 	if (input()->getMouse(0)) {
 		if (checkClick()) {
-			updateSprite();
+			Vector2d updatePos = mouseOnObject();
+			updateSprite(updatePos.x, updatePos.y, currentColor);
 		}
 	}
 }
@@ -31,6 +33,13 @@ bool DrawCell::checkClick() {
 	return false;
 }
 
-void DrawCell::updateSprite() {
-	this->sprite()->texture()->pixels()->setPixel(0,0,RED);
+Vector2d DrawCell::mouseOnObject() {
+	// ((Position - mousePos) / scale) + (width / 2)
+	return Vector2d((int(floor((input()->getMouseX() - this->position.x) / this->scale.x))) + (this->sprite()->width() / 2), -(int(floor((input()->getMouseY() - this->position.y) / this->scale.y))) + (this->sprite()->height() / 2) -1);
+}
+
+void DrawCell::updateSprite(int xx, int yy, RGBAColor c) {
+	this->sprite()->texture()->pixels()->setPixel(xx,yy,c);
+	std::cout << "updating pos " << xx << " - " << yy << std::endl;
+	std::cout << "drawCell pos " << this->position.x << " - " << this->position.y << std::endl;
 }

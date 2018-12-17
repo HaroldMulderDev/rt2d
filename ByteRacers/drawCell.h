@@ -15,9 +15,13 @@ public:
 
    void update(float deltaTime);
 
-   void updateSprite();
+   void updateSprite(int xx, int yy, RGBAColor c);
 private:
 	bool checkClick();
+
+	Vector2d mouseOnObject();
+
+	RGBAColor currentColor;
 };
 
 #endif // !DRAWCELL_H
