@@ -178,6 +178,10 @@ public:
 	/// @brief write _pixelbuffer as image to file (tga only)
 	/// @return int 0 if failed
 	int writeTGAImage();
+	/// @brief write _pixelbuffer as image to file (tga only)
+	/// @param file path and filename to save at
+	/// @return int 0 if failed
+	int writeTGAImage(std::string filepath);
 	/// @brief create a width x height white PixelBuffer & GLpixeldata
 	/// @param width the width of the white Texture
 	/// @param height the height of the white Texture
