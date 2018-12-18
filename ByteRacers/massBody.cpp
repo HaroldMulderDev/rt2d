@@ -11,5 +11,7 @@ MassBody::~MassBody()
    
 }
 
-void MassBody::update(float deltaTime) {
+void MassBody::update(float deltaTime)
+{
+
 }
