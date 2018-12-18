@@ -36,3 +36,9 @@ void Button::checkClick() {
 		buttonRun();
 	}
 }
+
+void Button::setTextScale(float scale) {
+	if (scale <= 1.2f) {
+		display->scale = Point2(scale, scale); 
+	} 
+}

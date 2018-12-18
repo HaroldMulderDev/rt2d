@@ -35,5 +35,4 @@ private:
 	std::vector<BRScene*> loadedScenes;
 };
 
-
 #endif // !scenemanager_h

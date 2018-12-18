@@ -17,6 +17,7 @@ public:
    virtual void update(float deltaTime);
 private:
 	Button* button;
+	Button* button2;
 
 	DrawCell* cell;
 

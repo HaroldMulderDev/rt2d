@@ -16,6 +16,8 @@ public:
    void update(float deltaTime);
 
    void updateSprite(int xx, int yy, RGBAColor c);
+
+   void saveVehicle();
 private:
 	bool checkClick();
 

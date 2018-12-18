@@ -30,7 +30,7 @@ public:
    void setTextOffset(float x) { display->position.x = x; }
 
    // A setter for the text scaling
-   void setTextScale(float scale) { display->scale = Point2(scale, scale); }
+   void setTextScale(float scale);
    
 private:
 	std::function<void()> buttonRun = nullptr;

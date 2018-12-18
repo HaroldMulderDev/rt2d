@@ -43,3 +43,7 @@ void DrawCell::updateSprite(int xx, int yy, RGBAColor c) {
 	std::cout << "updating pos " << xx << " - " << yy << std::endl;
 	std::cout << "drawCell pos " << this->position.x << " - " << this->position.y << std::endl;
 }
+
+void DrawCell::saveVehicle() {
+	this->sprite()->texture()->writeTGAImage();
+}
