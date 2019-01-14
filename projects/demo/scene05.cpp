@@ -60,12 +60,16 @@ void Scene05::update(float deltaTime)
 		dynamic_sprite->texture()->pixels()->filter = filter;
 		dynamic_sprite->texture()->pixels()->wrap = wrap;
 	}
-	if (input()->getKeyDown( KeyCode::N )) {
-		negative++; if (negative > 1) { negative = 0;}
+	if (input()->getKeyDown(KeyCode::N)) {
+		negative++; if (negative > 1) { negative = 0; }
 		PixelBuffer* buffer = dynamic_sprite->texture()->pixels();
 		buffer->filter = filter;
 		buffer->wrap = wrap;
 		negativePixels(buffer);
+	}
+	if (input()->getKeyDown(KeyCode::P)) {
+		Texture* buffer = dynamic_sprite->texture();
+		buffer->writeTGAImage();
 	}
 	if (wrap == 0) { text[5]->message("<W> Toggle wrapping (repeat)"); }
 	if (wrap == 1) { text[5]->message("<W> Toggle wrapping (mirror repeat)"); }
